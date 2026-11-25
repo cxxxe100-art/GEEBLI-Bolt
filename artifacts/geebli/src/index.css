@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+@layer theme, base, clerk, components, utilities;
+@import 'tailwindcss';
+@import '@clerk/themes/shadcn.css';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:is(.dark *));
+@theme inline {
+  --color-background: hsl(var(--background)); --color-foreground: hsl(var(--foreground)); --color-border: hsl(var(--border)); --color-input: hsl(var(--input)); --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card)); --color-card-foreground: hsl(var(--card-foreground)); --color-popover: hsl(var(--popover)); --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary)); --color-primary-foreground: hsl(var(--primary-foreground)); --color-secondary: hsl(var(--secondary)); --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted)); --color-muted-foreground: hsl(var(--muted-foreground)); --color-accent: hsl(var(--accent)); --color-accent-foreground: hsl(var(--accent-foreground)); --color-destructive: hsl(var(--destructive)); --font-sans: var(--app-font-sans); --font-mono: var(--app-font-mono); --radius-lg: var(--radius);
+}
+:root {
+  --background: 42 42% 96%; --foreground: 178 24% 17%; --card: 42 42% 99%; --card-foreground: 178 24% 17%;
+  --popover: 42 42% 99%; --popover-foreground: 178 24% 17%; --primary: 165 43% 29%; --primary-foreground: 42 42% 97%;
+  --secondary: 39 37% 90%; --secondary-foreground: 178 24% 17%; --muted: 39 28% 91%; --muted-foreground: 177 10% 43%;
+  --accent: 27 94% 52%; --accent-foreground: 178 24% 17%; --destructive: 1 62% 48%; --border: 38 24% 84%;
+  --input: 38 24% 84%; --ring: 165 43% 29%; --card-border: 38 24% 84%; --popover-border: 38 24% 84%;
+  --sidebar: 165 37% 24%; --sidebar-foreground: 42 42% 97%; --sidebar-border: 165 24% 32%; --sidebar-primary: 27 94% 52%; --sidebar-primary-foreground: 178 24% 17%; --sidebar-accent: 165 30% 31%; --sidebar-accent-foreground: 42 42% 97%; --sidebar-ring: 27 94% 52%;
+  --chart-1: 165 43% 29%; --chart-2: 27 94% 52%; --chart-3: 43 74% 58%; --chart-4: 202 31% 54%; --chart-5: 341 41% 60%;
+  --app-font-sans: 'IBM Plex Sans Arabic', 'DM Sans', sans-serif; --app-font-serif: 'Manrope', sans-serif; --app-font-mono: ui-monospace, monospace; --radius: 1rem; --spacing: .25rem;
+  --button-outline: rgba(23, 60, 53, .12); --badge-outline: rgba(23, 60, 53, .09); --elevate-1: rgba(23,60,53,.04); --elevate-2: rgba(23,60,53,.08);
+  --opaque-button-border-intensity: -8; --primary-border: hsl(var(--primary)); --secondary-border: hsl(var(--secondary)); --muted-border: hsl(var(--muted)); --accent-border: hsl(var(--accent)); --destructive-border: hsl(var(--destructive)); --sidebar-primary-border: hsl(var(--sidebar-primary)); --sidebar-accent-border: hsl(var(--sidebar-accent));
+}
+.dark { --background: 176 23% 12%; --foreground: 40 34% 92%; --card: 176 21% 16%; --card-foreground: 40 34% 92%; --popover: 176 21% 16%; --popover-foreground: 40 34% 92%; --primary: 160 39% 55%; --primary-foreground: 176 23% 12%; --secondary: 176 18% 23%; --secondary-foreground: 40 34% 92%; --muted: 176 17% 22%; --muted-foreground: 40 14% 66%; --accent: 18 79% 63%; --accent-foreground: 176 23% 12%; --destructive: 1 62% 53%; --border: 176 15% 27%; --input: 176 15% 27%; --ring: 160 39% 55%; --card-border: 176 15% 27%; --popover-border: 176 15% 27%; --sidebar: 176 26% 9%; --sidebar-foreground: 40 34% 92%; --sidebar-border: 176 15% 22%; --sidebar-primary: 18 79% 63%; --sidebar-primary-foreground: 176 23% 12%; --sidebar-accent: 176 18% 18%; --sidebar-accent-foreground: 40 34% 92%; --sidebar-ring: 18 79% 63%; --chart-1: 160 39% 55%; --chart-2: 18 79% 63%; --chart-3: 43 74% 58%; --chart-4: 202 31% 64%; --chart-5: 341 41% 70%; }
+@layer base { * { @apply border-border; } html { direction: rtl; scroll-behavior: smooth; } body { @apply font-sans antialiased bg-background text-foreground; } button,input,textarea,select { font: inherit; } }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button,a { -webkit-tap-highlight-color: transparent; }
+.shell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+.serif { font-family: var(--app-font-serif); }
+.hero-surface { background: radial-gradient(ellipse at 13% 10%, rgba(255,135,25,.22), transparent 35%), linear-gradient(132deg,#e7f0e2 0%,#fff4df 52%,#ffead6 100%); }
+.grain { position: relative; isolation: isolate; }
+.grain:after { content:""; pointer-events:none; position:fixed; z-index:30; inset:0; opacity:.035; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E"); }
+.fade-up { animation: rise .55s both cubic-bezier(.2,.7,.2,1); }
+@keyframes rise { from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)} }
+.product-art { min-height: 220px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.product-art:before { content:""; width:72%; aspect-ratio:1; border-radius:50%; background:rgba(255,255,255,.48); position:absolute; }
+.product-art > * { position:relative; }
+.field { width:100%; border:1px solid hsl(var(--border)); background:hsl(var(--card)); border-radius:12px; padding:12px 14px; outline:none; transition:border-color .2s,box-shadow .2s; }
+.field:focus { border-color:hsl(var(--primary)); box-shadow:0 0 0 3px hsl(var(--primary)/.11); }
+.btn { border:0; border-radius:999px; padding:11px 19px; display:inline-flex; align-items:center; justify-content:center; gap:9px; font-weight:700; cursor:pointer; transition:transform .2s,background .2s; text-decoration:none; }
+.btn:hover { transform:translateY(-2px); }.btn-primary { color:hsl(var(--primary-foreground)); background:hsl(var(--primary)); }.btn-primary:hover {background:#285f51}.btn-quiet {color:hsl(var(--foreground)); background:hsl(var(--secondary));}.btn-outline { color:hsl(var(--foreground)); background:transparent; border:1px solid hsl(var(--border)); }
+.status { border-radius:999px; padding:5px 11px; font-size:12px; font-weight:700; background:#e8f0e8; color:#305f4f; white-space:nowrap; }
+.table-wrap { overflow:auto; border:1px solid hsl(var(--border)); border-radius:18px; background:hsl(var(--card)); }
+table { width:100%; border-collapse:collapse; text-align:right; min-width:680px; } th,td { padding:15px 18px; border-bottom:1px solid hsl(var(--border)); } th { color:hsl(var(--muted-foreground)); font-size:12px; font-weight:600; background:hsl(var(--muted)/.5); } tr:last-child td {border-bottom:0}
+@media(max-width:700px){.shell{width:calc(100% - 32px)}.product-art{min-height:180px}}
+
+/* GEEBLI brand polish */
+:root { --brand-green:#176238; --brand-orange:#f07816; }
+.hero-surface { background: radial-gradient(ellipse at 12% 12%,rgba(240,120,22,.18),transparent 34%),radial-gradient(ellipse at 88% 78%,rgba(23,98,56,.12),transparent 38%),linear-gradient(135deg,#e9f1e5 0%,#fff6e7 55%,#ffead7 100%); }
+.grain { background-color:#faf8f0; }
+input::placeholder,textarea::placeholder { color:#87958a; }
+:focus-visible { outline:3px solid rgba(240,120,22,.45); outline-offset:2px; }
+@media(max-width:700px){.shell{width:calc(100% - 28px)} header .shell{gap:10px}}
+
+/* Homepage visual refresh: responsive hero and branded logo centerpiece */
+.hero-brand-visual { isolation:isolate; }
+.hero-brand-glow { position:absolute; width:78%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,rgba(237,177,141,.48) 0%,rgba(210,225,205,.72) 48%,rgba(210,225,205,0) 72%); filter:blur(2px); }
+.hero-orbit { position:absolute; border:1px solid rgba(255,255,255,.76); border-radius:50%; pointer-events:none; }
+.hero-orbit-one { width:94%; aspect-ratio:1; }
+.hero-orbit-two { width:72%; aspect-ratio:1; border-color:rgba(47,105,75,.13); }
+.hero-brand-card { animation:brand-float 7s ease-in-out infinite; }
+.hero-logo-halo img { filter:drop-shadow(0 8px 10px rgba(23,72,62,.12)); }
+@keyframes brand-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+@media(max-width:767px){
+  .hero-surface .shell { gap:1.25rem; padding-top:2.5rem; padding-bottom:2.75rem; }
+  .hero-surface h1 { letter-spacing:-1.5px; }
+  .hero-brand-visual { min-height:320px; margin-top:.25rem; }
+  .hero-brand-card { padding:1.6rem 1.25rem; border-radius:28px; }
+  .hero-orbit-one { width:88%; }
+  .hero-orbit-two { width:68%; }
+}
+@media(prefers-reduced-motion:reduce){.hero-brand-card{animation:none}}
